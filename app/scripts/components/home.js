@@ -1,15 +1,11 @@
 import React from 'react';
-import Counter from './counter';
+import Ball from './ball';
 
 var Home = React.createClass({
 
   render() {
     return (
-      <div className="hero-unit">
-        <h1>Erik Culo!</h1>
-        <p>E Matte terrone.<br/></p>
-        <Counter tickInterval="16"/>
-      </div>
+      <Ball canvasId="canvas"/>
     );
   }
 });
