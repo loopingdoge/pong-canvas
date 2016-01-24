@@ -1,11 +1,13 @@
 import React from 'react';
 import Ball from './ball';
+import Bar from './bar';
 
 var Home = React.createClass({
 
   render() {
     return (
-      <Ball canvasId="canvas"/>
+    	<Bar canvasId="canvas"/>	
+    	<Ball canvasId="canvas"/>
     );
   }
 });
