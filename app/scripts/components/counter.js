@@ -3,9 +3,9 @@ import Rx from 'rx';
 
 var Counter = React.createClass({
   getInitialState() {
-      return {
-          count: 0
-      };
+    return {
+      count: 0
+    };
   },
 
   componentDidMount() {
