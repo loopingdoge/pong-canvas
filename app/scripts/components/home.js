@@ -19,11 +19,8 @@ var Home = React.createClass({
 
   render() {
     return (
-<<<<<<< HEAD
     	<Bar canvasId="canvas" framerate={this.state.framerate}/>
-=======
       <Ball canvasId="canvas" framerate={this.state.framerate}/>
->>>>>>> origin/master
     );
   }
 });
