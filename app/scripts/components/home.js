@@ -11,11 +11,12 @@ const Home = {
     this.canvas = document.getElementById('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.framerate = Rx.Observable.interval(16).timeInterval();
-    this.drawables = [];
+    
+    this.field = Field();
+    this.bars = [Bar()];
+    this.ball = Ball(this.bars);
+    this.drawables = [this.field, this.bars[0], this.ball];
 
-    this.drawables.push(Field());
-    this.drawables.push(Ball());
-    this.drawables.push(Bar());
     this.drawables.map((drawable) => drawable.init());
     this.framerate.subscribe(this.drawAll.bind(this));
   },
