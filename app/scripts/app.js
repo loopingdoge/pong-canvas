@@ -1,7 +1,5 @@
-import React from 'react';
 import Home from './components/home';
 
-window.React = React;
-const mountNode = document.getElementById('canvas');
+Home().init();
 
-React.render(<Home/>, mountNode);
+//const mountNode = document.getElementById('canvas');

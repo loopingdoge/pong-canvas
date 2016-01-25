@@ -1,48 +1,33 @@
-import React from 'react';
+import Component from './component';
 
+const Bar = {
 
-var Bar = React.createClass({
+  x: 0,
+  y: 0,
+  width: 10,
+  height: 50,
 
-	getInitialState() {
-		return {
-			ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-			startX: 0,
-			startY: 0,
-			width: 10,
-			heigt: 50
-		};
-	},
+  init() {
+    window.addEventListener('keydown', checkKeyPressed.bind(this), false);
 
-	componentDidMount(){
-		const ctx = this.state.ctx;
-		var X =this.state.startX;
-		var Y = this.state.startY;
-		var width = this.state.width;
-		var heigt = this.state.heigt;
-		ctx.fillRect(X, Y, width, heigt);
-		
+    function checkKeyPressed(e) {
+      if (e.keyCode == '38') {
+        this.y = this.y - 10;
+      }
+      if (e.keyCode == '40') {
+        this.y = this.y + 10;
+      }
+    }
+  },
 
-		window.addEventListener("keydown", checkKeyPressed, false);
- 
-		function checkKeyPressed(e) {
-		    if (e.keyCode == "38") {
-						ctx.clearRect(X,Y, width, heigt);
-		        Y = Y-10;
-						ctx.fillRect(X, Y, width, heigt);
-		    }
-				if (e.keyCode == "40") {
-		        ctx.clearRect(X,Y, width, heigt);
-		        Y = Y+10;
-						ctx.fillRect(X, Y, width, heigt);
-		    }
-		}
+  draw() {
+    this.ctx.beginPath();
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    this.ctx.restore();
+  }
+};
 
-	},
-
-	render(){
-		return null;
-	}
-
-});
-
-export default Bar;
+export default function createBar() {
+  return Object.assign({}, Component, Bar);
+}
