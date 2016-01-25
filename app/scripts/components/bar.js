@@ -2,13 +2,15 @@ import React from 'react';
 
 
 var Bar = React.createClass({
-	getInitialState(){
-		return{
-			ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-			x: 0,
-			y: 0
-		};
-	},
+
+  getInitialState() {
+    return {
+      ctx: document.getElementById(this.props.canvasId).getContext("2d"),
+      x: 0,
+      y: 0
+    };
+  },
+
 
 	componentDidMount(){
 		this.state.ctx.moveTo(0,0);

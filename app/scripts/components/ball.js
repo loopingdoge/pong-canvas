@@ -1,7 +1,8 @@
 import React from 'react';
 import Rx from 'rx';
 
-var Counter = React.createClass({
+var Ball = React.createClass({
+
   getInitialState() {
     return {
       ctx: document.getElementById(this.props.canvasId).getContext("2d"),
@@ -11,7 +12,14 @@ var Counter = React.createClass({
   },
 
   componentDidMount() {
-    
+    const ctx = this.state.ctx;
+    const framerate = this.props.framerate;
+
+    ctx.beginPath();
+    ctx.arc(75, 75, 12, 0, 2 * Math.PI);
+    ctx.fill();
+
+    framerate.subscribe(() => console.log('strunz'));
   },
 
   render() {
@@ -19,4 +27,4 @@ var Counter = React.createClass({
   }
 });
 
-export default Counter;
+export default Ball;
