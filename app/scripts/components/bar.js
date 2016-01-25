@@ -1,48 +1,29 @@
-import React from 'react';
+const Bar = {
 
+	ctx: document.getElementById('canvas').getContext("2d"),
+	startX: 0,
+	y: 0,
+	width: 10,
+	height: 50,
 
-var Bar = React.createClass({
+  init() {
+    window.addEventListener("keydown", checkKeyPressed.bind(this), false);
 
-	getInitialState() {
-		return {
-			ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-			startX: 0,
-			startY: 0,
-			width: 10,
-			heigt: 50
-		};
-	},
+    function checkKeyPressed(e) {
+      if (e.keyCode == "38") {
+        this.y = this.y-10;
+      }
+      if (e.keyCode == "40") {
+        this.y = this.y+10;
+      }
+    }
+  },
 
-	componentDidMount(){
-		const ctx = this.state.ctx;
-		var X =this.state.startX;
-		var Y = this.state.startY;
-		var width = this.state.width;
-		var heigt = this.state.heigt;
-		ctx.fillRect(X, Y, width, heigt);
-		
+  draw() {
+    this.ctx.fillRect(this.startX, this.y, this.width, this.height);
+  }
+}
 
-		window.addEventListener("keydown", checkKeyPressed, false);
- 
-		function checkKeyPressed(e) {
-		    if (e.keyCode == "38") {
-						ctx.clearRect(X,Y, width, heigt);
-		        Y = Y-10;
-						ctx.fillRect(X, Y, width, heigt);
-		    }
-				if (e.keyCode == "40") {
-		        ctx.clearRect(X,Y, width, heigt);
-		        Y = Y+10;
-						ctx.fillRect(X, Y, width, heigt);
-		    }
-		}
-
-	},
-
-	render(){
-		return null;
-	}
-
-});
-
-export default Bar;
+export default function createBar() {
+  return Object.create(Bar);
+}

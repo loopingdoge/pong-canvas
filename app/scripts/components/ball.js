@@ -13,6 +13,10 @@ const Ball = {
     this.y = this.y + (this.direction * this.velY);
   },
 
+  init() {
+
+  },
+
   draw() {
     this.movement();
     const ctx = this.ctx;

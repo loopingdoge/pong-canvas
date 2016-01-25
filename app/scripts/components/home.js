@@ -4,7 +4,6 @@ import Bar from './bar';
 
 import Rx from 'rx';
 
-
 var Home = React.createClass({
 
 	getInitialState() {
@@ -20,6 +19,8 @@ var Home = React.createClass({
     const framerate = this.state.framerate;
     const drawables = [];
     drawables.push(Ball());
+    drawables.push(Bar());
+    drawables.map((drawable) => drawable.init());
     this.setState({drawables: drawables})
     framerate.subscribe(this.drawAll);
 	},
