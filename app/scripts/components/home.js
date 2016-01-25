@@ -1,5 +1,6 @@
 import React from 'react';
 import Ball from './ball';
+import Bar from './bar';
 import Rx from 'rx';
 
 
@@ -17,7 +18,6 @@ var Home = React.createClass({
 
   render() {
     return (
-      <Ball canvasId="canvas"/>
       <Ball canvasId="canvas" framerate={this.state.framerate}/>
     );
   }
