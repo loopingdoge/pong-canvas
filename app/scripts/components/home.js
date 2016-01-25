@@ -20,7 +20,8 @@ var Home = React.createClass({
   render() {
     return (
     	<Bar canvasId="canvas" framerate={this.state.framerate}/>
-      <Ball canvasId="canvas" framerate={this.state.framerate}/>
+
+     	
     );
   }
 });

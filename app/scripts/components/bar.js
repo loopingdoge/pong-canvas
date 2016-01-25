@@ -3,13 +3,13 @@ import React from 'react';
 
 var Bar = React.createClass({
 
-  getInitialState() {
-    return {
-      ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-      x: 0,
-      y: 0
-    };
-  },
+	getInitialState() {
+		return {
+			ctx: document.getElementById(this.props.canvasId).getContext("2d"),
+			x: 0,
+			y: 0
+		};
+	},
 
 	componentDidMount(){
 		const ctx = this.state.ctx;
@@ -23,4 +23,5 @@ var Bar = React.createClass({
 	}
 
 });
+
 export default Bar;
