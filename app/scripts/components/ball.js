@@ -1,30 +1,27 @@
-import React from 'react';
 import Rx from 'rx';
 
-var Ball = React.createClass({
+const Ball = {
+  ctx: document.getElementById('canvas').getContext("2d"),
+  x: 75,
+  y: 75,
+  direction: 1,
+  velX: 4,
+  velY: 1,
 
-  getInitialState() {
-    return {
-      ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-      x: 0,
-      y: 0
-    };
+  movement() {
+    this.x = this.x + (this.direction * this.velX);
+    this.y = this.y + (this.direction * this.velY);
   },
 
-  componentDidMount() {
-    const ctx = this.state.ctx;
-    const framerate = this.props.framerate;
-
+  draw() {
+    this.movement();
+    const ctx = this.ctx;
     ctx.beginPath();
-    ctx.arc(75, 75, 12, 0, 2 * Math.PI);
+    ctx.arc(this.x, this.y, 12, 0, 2 * Math.PI);
     ctx.fill();
-
-    framerate.subscribe(() => console.log('strunz'));
-  },
-
-  render() {
-    return null;
   }
-});
+}
 
-export default Ball;
+export default function createBall() {
+  return Object.create(Ball);
+}
