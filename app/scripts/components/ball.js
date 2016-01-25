@@ -1,7 +1,5 @@
-import Rx from 'rx';
-
 const Ball = {
-  ctx: document.getElementById('canvas').getContext("2d"),
+  ctx: document.getElementById('canvas').getContext('2d'),
   x: 75,
   y: 75,
   direction: 1,
@@ -24,7 +22,7 @@ const Ball = {
     ctx.arc(this.x, this.y, 12, 0, 2 * Math.PI);
     ctx.fill();
   }
-}
+};
 
 export default function createBall() {
   return Object.create(Ball);

@@ -6,26 +6,27 @@ import Rx from 'rx';
 
 var Home = React.createClass({
 
-	getInitialState() {
+  getInitialState() {
     return {
       canvas: document.getElementById('canvas'),
-      ctx: canvas.getContext("2d"),
+      ctx: canvas.getContext('2d'),
       framerate: Rx.Observable.interval(16).timeInterval(),
       drawables: []
     };
   },
 
-	componentDidMount() {
+  componentDidMount() {
     const framerate = this.state.framerate;
     const drawables = [];
     drawables.push(Ball());
     drawables.push(Bar());
     drawables.map((drawable) => drawable.init());
-    this.setState({drawables: drawables})
+    this.setState({drawables: drawables});
     framerate.subscribe(this.drawAll);
-	},
+  },
 
   drawAll() {
+    const canvas = this.state.canvas;
     this.state.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.state.drawables.map((drawable) => {
       drawable.draw();

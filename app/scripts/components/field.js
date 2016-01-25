@@ -4,7 +4,7 @@ var Field = React.createClass({
 
   getInitialState() {
     return {
-      ctx: document.getElementById(this.props.canvasId).getContext("2d"),
+      ctx: document.getElementById(this.props.canvasId).getContext('2d'),
       x: 0,
       y: 0
     };
