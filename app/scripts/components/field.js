@@ -1,46 +1,49 @@
-import React from 'react';
+import Component from './component';
 
-var Field = React.createClass({
+const Field = {
 
-  getInitialState() {
-    return {
-      ctx: document.getElementById(this.props.canvasId).getContext('2d'),
-      x: 0,
-      y: 0
-    };
+  x: 0,
+  y: 0,
+  lineWidth: 3,
+
+  init() {
+    this.width = this.canvas.width;
+    this.height = this.canvas.height;
+    this.ctx = this.canvas.getContext('2d');
   },
 
-  componentDidMount() {
-    const ctx = this.state.ctx;
-    ctx.beginPath();
-    ctx.rect(0,0,600,500);
+  draw() {
+    const ctx = this.ctx;
+    const topArea = (this.height/100) * 10;
+    const botArea = (this.height/100) * 90;
+    //ctx.beginPath();
+    ctx.rect(0, 0, this.width, this.height);
     ctx.fillStyle = 'black';
     ctx.fill();
-    ctx.moveTo(0, 25);
-    ctx.lineTo(650, 25);
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = 'white';
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(0, 425);
-    ctx.lineTo(650, 425);
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = 'white';
-    ctx.stroke();
-    //antialiasing fix
-    ctx.translate(0.5, 0.5);
-
+    
     ctx.beginPath();
     ctx.setLineDash([9]);
-    ctx.moveTo(300, 30);
-    ctx.lineTo(300, 425);
+    ctx.moveTo(0, topArea);
+    ctx.lineTo(this.width, topArea);
+    ctx.lineWidth = this.lineWidth;
+    ctx.strokeStyle = 'white';
     ctx.stroke();
-  },
 
-  render() {
-    return null;
+    ctx.moveTo(0, botArea);
+    ctx.lineTo(this.width, botArea);
+    ctx.lineWidth = this.lineWidth;
+    ctx.strokeStyle = 'white';
+    ctx.stroke();
+
+    ctx.moveTo(this.width/2 - this.lineWidth/2, topArea + this.height/100);
+    ctx.lineTo(this.width/2 - this.lineWidth/2, botArea - this.height/100);
+    ctx.stroke();
+
+    ctx.restore();
   }
-});
 
-export default Field;
+};
+
+export default function createField() {
+  return Object.assign({}, Component, Field);
+}

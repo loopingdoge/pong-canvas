@@ -1,7 +1,8 @@
+import Component from './component';
+
 const Bar = {
 
-  ctx: document.getElementById('canvas').getContext('2d'),
-  startX: 0,
+  x: 0,
   y: 0,
   width: 10,
   height: 50,
@@ -20,10 +21,13 @@ const Bar = {
   },
 
   draw() {
-    this.ctx.fillRect(this.startX, this.y, this.width, this.height);
+    this.ctx.beginPath();
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    this.ctx.restore();
   }
 };
 
 export default function createBar() {
-  return Object.create(Bar);
+  return Object.assign({}, Component, Bar);
 }

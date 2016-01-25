@@ -1,41 +1,33 @@
-import React from 'react';
+import Component from './component';
 import Ball from './ball';
 import Bar from './bar';
+import Field from './field';
 
 import Rx from 'rx';
 
-var Home = React.createClass({
+const Home = {
 
-  getInitialState() {
-    return {
-      canvas: document.getElementById('canvas'),
-      ctx: canvas.getContext('2d'),
-      framerate: Rx.Observable.interval(16).timeInterval(),
-      drawables: []
-    };
-  },
+  init() {
+    this.canvas = document.getElementById('canvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.framerate = Rx.Observable.interval(16).timeInterval();
+    this.drawables = [];
 
-  componentDidMount() {
-    const framerate = this.state.framerate;
-    const drawables = [];
-    drawables.push(Ball());
-    drawables.push(Bar());
-    drawables.map((drawable) => drawable.init());
-    this.setState({drawables: drawables});
-    framerate.subscribe(this.drawAll);
+    this.drawables.push(Field());
+    this.drawables.push(Ball());
+    this.drawables.push(Bar());
+    this.drawables.map((drawable) => drawable.init());
+    this.framerate.subscribe(this.drawAll.bind(this));
   },
 
   drawAll() {
-    const canvas = this.state.canvas;
-    this.state.ctx.clearRect(0, 0, canvas.width, canvas.height);
-    this.state.drawables.map((drawable) => {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.drawables.map((drawable) => {
       drawable.draw();
     });
-  },
-
-  render() {
-    return null;
   }
-});
+};
 
-export default Home;
+export default function createHome() {
+  return Object.assign({}, Component, Home);
+}
