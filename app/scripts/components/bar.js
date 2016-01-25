@@ -1,25 +1,29 @@
-import React from 'react';
+const Bar = {
 
+	ctx: document.getElementById('canvas').getContext("2d"),
+	startX: 0,
+	y: 0,
+	width: 10,
+	height: 50,
 
-var Bar = React.createClass({
+  init() {
+    window.addEventListener("keydown", checkKeyPressed.bind(this), false);
 
-  getInitialState() {
-    return {
-      ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-      x: 0,
-      y: 0
-    };
+    function checkKeyPressed(e) {
+      if (e.keyCode == "38") {
+        this.y = this.y-10;
+      }
+      if (e.keyCode == "40") {
+        this.y = this.y+10;
+      }
+    }
   },
 
-	componentDidMount(){
-		this.state.ctx.moveTo(0,0);
-		this.state.ctx.lineTo(300,150);
-		this.state.ctx.stroke();
-	},
+  draw() {
+    this.ctx.fillRect(this.startX, this.y, this.width, this.height);
+  }
+}
 
-	render(){
-		return(null);
-	};
-
-});
-export default Bar;
+export default function createBar() {
+  return Object.create(Bar);
+}
