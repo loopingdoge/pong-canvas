@@ -11,16 +11,16 @@ var Bar = React.createClass({
     };
   },
 
-
 	componentDidMount(){
-		this.state.ctx.moveTo(0,0);
-		this.state.ctx.lineTo(300,150);
-		this.state.ctx.stroke();
+		const ctx = this.state.ctx;
+		ctx.moveTo(0,0);
+		ctx.lineTo(300,150);
+		ctx.stroke();
 	},
 
 	render(){
-		return(null);
-	};
+		return null;
+	}
 
 });
 export default Bar;
