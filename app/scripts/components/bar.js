@@ -6,15 +6,17 @@ var Bar = React.createClass({
 	getInitialState() {
 		return {
 			ctx: document.getElementById(this.props.canvasId).getContext("2d"),
-			x: 0,
-			y: 0
+			startX: 0,
+			starty: 0,
+			width: 10,
+			heigt: 50
 		};
 	},
 
 	componentDidMount(){
 		const ctx = this.state.ctx;
-		ctx.moveTo(0,0);
-		ctx.lineTo(300,150);
+		
+		ctx.rect(this.state.startX, this.state.startY, this.state.width,this.state.heigt);
 		ctx.stroke();
 	},
 
