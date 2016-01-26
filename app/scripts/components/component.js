@@ -11,6 +11,10 @@ const component = {
 
   },
 
+  update() {
+
+  },
+
   draw() {
 
   }
